@@ -2,9 +2,6 @@
  * CODE LICENSED UNDER THE CREATIVE COMMON BY-NC-ND LICENSE.
  * https://creativecommons.org/licenses/by-nc-nd/4.0/
  * 
- * Contribute: https://github.com/cryptofinance-ai/crypto-wallet
- *    Contact: support@cryptofinance.ai
- * 
  * Copyright 2019 by cryptofinance.ai
  */
 
