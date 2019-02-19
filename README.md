@@ -17,6 +17,13 @@ More info at https://cryptofinance.ai
 
 ![CRYPTOFINANCE Installed](https://cldup.com/mnrJS0of-u.png)
 
+### Post-install
+
+* You'll be prompt to allow for 2 permission scopes (to make API requests and customize the menu).
+* You can uninstall the the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
+* You'll need to paste the script for all the sheets where you want to use `CRYPTOFINANCE()`.
+
+
 ## Resources
 
  * [Historical prices &rsaquo;](https://cryptofinance.ai/docs/cryptocurrency-bitcoin-historical-prices/)
