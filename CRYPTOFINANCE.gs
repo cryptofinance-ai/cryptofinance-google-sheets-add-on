@@ -1,37 +1,60 @@
-function onInstall() {
-    onOpen()
-}
+/**
+ * CODE LICENSED UNDER THE CREATIVE COMMON BY-NC-ND LICENSE.
+ * https://creativecommons.org/licenses/by-nc-nd/4.0/
+ * 
+ * Contribute: https://github.com/cryptofinance-ai/crypto-wallet
+ *    Contact: support@cryptofinance.ai
+ * 
+ * Copyright 2019 by cryptofinance.ai
+ */
 
 
+/**
+ * @OnlyCurrentDoc
+ */
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('CRYPTOFINANCE')
-      .addItem('Documentation', 'ShowDoc')
+      .addItem('How to refresh rates', 'ShowRefreshInfo')
       .addSeparator()
       .addItem('Set Data Availability plan API Key', 'ShowAPIKeyDataAvaibilityPrompt')
       .addSeparator()
       .addItem('Set Historical Data plan API Key', 'ShowAPIKeyHistPlanPrompt')
+      .addSeparator()
+      .addItem('Documentation', 'ShowDoc')
       .addToUi();  
 }
 
 
+/**
+ * @OnlyCurrentDoc
+ */
 function ShowAPIKeyDataAvaibilityPrompt() {
   var ui = SpreadsheetApp.getUi();
-  var result = ui.prompt('Set API Key for Data Availability Service',
-                          'The Data Availability Service offers unlimited data from CoinMarketCap and helps you avoid errors due to exchanges API ban and overload.\nExchanges ban Google Sheets servers IP addresses when too many requests originate from them.\nIt also provides you with more exchanges and markets data.\n\nMore info here: https://cryptofinance.ai/data-availability-service\n\nOnce subscribed, please enter your API Key below:',
-                          ui.ButtonSet.OK_CANCEL);  
+  var userProperties = PropertiesService.getUserProperties();
+  var api_key = userProperties.getProperty("APIKEYDATAAVAIBILITYSERVICE")
+
+  if (api_key) {
+    var result = ui.prompt('Set API Key for Data Availability Service',
+                           '✅ Your API '+ api_key +' key is already set and is valid.\n\nYour CRYPTOFINANCE calls are sent to the Data Availability Proxy API.\nYou can still re-enter it below to override its current value:',
+                           ui.ButtonSet.OK_CANCEL);
+  }
+  else {
+    var result = ui.prompt('Set API Key for Data Availability Service',
+                           'The Data Availability Service offers unlimited data from CoinMarketCap and helps you avoid errors due to exchanges API ban and overload.\nExchanges ban Google Sheets servers IP addresses when too many requests originate from them.\nIt also provides you with more exchanges and markets data.\n\nMore info here: https://cryptofinance.ai/data-availability-service\n\nOnce subscribed, please enter your API Key below:',
+                           ui.ButtonSet.OK_CANCEL);  
+  }
+  
   var button = result.getSelectedButton();
   var user_input = result.getResponseText().replace(/\s+/g, '');
   if (button == ui.Button.OK) {
     if (user_input && user_input == "__DELETE__") {
-      var userProperties = PropertiesService.getUserProperties();
       userProperties.deleteProperty("APIKEYDATAAVAIBILITYSERVICE");
       ui.alert('API Key Removed',
                'Your API Key has been sucessfully removed.\nYour requests will not be sent to the Data Availability Proxy API anymore.'
                ,ui.ButtonSet.OK);
     }
     else if (user_input && user_input.length == 36) {
-      var userProperties = PropertiesService.getUserProperties();
       userProperties.setProperty("APIKEYDATAAVAIBILITYSERVICE", user_input);
       ui.alert('API Key successfully saved',
                'Your requests will now be sent to the CRYPTOFINANCE Data Availability Service.\nWhenever an exchange API is overloaded you will keep getting data.\n\nBe sure to refresh the cells: Select cells calling CRYPTOFINANCE (or all with Cmd+A), hit Delete key, wait 3sec,\nand then undo the delete with Cmd+Z.\n(If you\'re on Windows use the Ctrl key instead of Cmd)\n\nYou can contact support@cryptofinance.ai if you have any question.'
@@ -46,14 +69,24 @@ function ShowAPIKeyDataAvaibilityPrompt() {
 }
 
 
-
+/**
+ * @OnlyCurrentDoc
+ */
 function ShowAPIKeyHistPlanPrompt() {
   var ui = SpreadsheetApp.getUi();
   
   var userProperties = PropertiesService.getUserProperties();
-  var result = ui.prompt('Set API Key for the Historical Data plan',
+  var api_key = userProperties.getProperty("APIKEY_HISTPLAN")
+  if (api_key) {
+    var result = ui.prompt('Set API Key for the Historical Data plan',
+                           '✅ Your API '+ api_key +' key is already set.\n\nYou can now use the historical data syntaxes in your sheet.\n\nYou can still re-enter it below to override its current value:',
+                           ui.ButtonSet.OK_CANCEL);
+  }
+  else {
+    var result = ui.prompt('Set API Key for the Historical Data plan',
                         'The Historical Data plan gives you access to hourly historical data of 196 exchanges.\nIncluding hourly open, high, low, close and volume info.\nATH (All Time High) prices and volume per exchange and custom sparklines.\n\nMore info at https://cryptofinance.ai/crypto-historical-data\n\nOnce subscribed, please enter your API Key below:',
                         ui.ButtonSet.OK_CANCEL);
+  }
   var button = result.getSelectedButton();
   var text = result.getResponseText().replace(/\s+/g, '');  
   if (button == ui.Button.OK) {
@@ -68,7 +101,7 @@ function ShowAPIKeyHistPlanPrompt() {
       var userProperties = PropertiesService.getUserProperties();
       userProperties.setProperty("APIKEY_HISTPLAN", text);
       ui.alert('API Key successfully saved',
-               'You can now use the historical data syntaxes in your sheet.\n\nIt looks like this: =CRYPTOFINANCE("BTC/USD", "close", "2017-12-25@17:00")\n\nSee the doc for all options: https://cryptofinance.ai/docs/cryptocurrency-bitcoin-historical-prices/\n'
+               'You can now use the historical data syntaxes in your sheet.\n\nIt looks like this: =CRYPTOFINANCE("BTC/USD", "price", "2017-12-25@17:00")\n\nSee the doc for all options: https://cryptofinance.ai/docs/cryptocurrency-bitcoin-historical-prices/\n'
                ,ui.ButtonSet.OK);
     }
     else if (text) {
@@ -80,12 +113,27 @@ function ShowAPIKeyHistPlanPrompt() {
 }
 
 
+/**
+ * @OnlyCurrentDoc
+ */
 function ShowDoc() {
   var ui = SpreadsheetApp.getUi()
   ui.alert("Documentation and Info",
-           'Add-on official website: https://cryptofinance.ai\n\
+           'Official website: https://cryptofinance.ai\n\
             Documentation: https://cryptofinance.ai/docs/\n\
             Support email: support@cryptofinance.ai',
+            ui.ButtonSet.OK)
+}
+
+
+
+/**
+ * @OnlyCurrentDoc
+ */
+function ShowRefreshInfo() {
+  var ui = SpreadsheetApp.getUi()
+  ui.alert("How to refresh rates",
+           'We recommend setting up a manual refresh trigger.\nSee the doc at this address for more info:\nhttps://cryptofinance.ai/docs/how-to-refresh-rates/',
             ui.ButtonSet.OK)
 }
 
@@ -128,7 +176,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
     }
     // Else, fetch it from API and cache it
     else {
-      var url = "https://api.cryptofinance.ai/v1/?histplanapikey=" + APIKEY_HISTPLAN + "&gsuuid=" + GSUUID + "&dataproxyapikey=" + APIKEYDATAAVAIBILITYSERVICE;
+      var url = "https://api.cryptofinance.ai/v1/data?histplanapikey=" + APIKEY_HISTPLAN + "&gsuuid=" + GSUUID + "&dataproxyapikey=" + APIKEYDATAAVAIBILITYSERVICE;
       url += "&m=" + market;
       url += "&a=" + attribute;
       url += "&o=" + option;
