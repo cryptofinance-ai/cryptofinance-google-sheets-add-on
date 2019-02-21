@@ -10,18 +10,20 @@ More info at https://cryptofinance.ai
 
 1. Open a Google sheet where you wish to use `CRYPTOFINANCE()`
 2. Go to **Tools** &rsaquo; **Script editor**
-3. Copy the content of [`CRYPTOFINANCE.gs`](https://raw.githubusercontent.com/cryptofinance-ai/cryptofinance-google-sheets-add-on/master/CRYPTOFINANCE.gs) and paste it in the script editor
+3. Copy the content of [`CRYPTOFINANCE.gs`](https://raw.githubusercontent.com/cryptofinance-ai/cryptofinance-google-sheets-add-on/master/CRYPTOFINANCE.gs) and paste it in the script editor (replace any existing content)
 4. Save the script with **File** &rsaquo; **Save**, name it **CRYPTOFINANCE**, then close the script editor
 5. Back to your Google sheet, refresh the page, a **CRYPTOFINANCE** menu will appear next to **Help**
 6. That's it! You now have the `CRYPTOFINANCE()` function available in your sheet.
 
+**Note:** Don't forget to re-enter your API key if you subscribed to a plan
+
 ![CRYPTOFINANCE Installed](https://cldup.com/mnrJS0of-u.png)
 
-### Post-install
+## Post-install
 
-* You'll be prompt to allow for 2 permission scopes (to make API requests and customize the menu).
-* You can uninstall the the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
+* To avoid duplicate it's recommended to uninstall the the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
 * You'll need to paste the script for all the sheets where you want to use `CRYPTOFINANCE()`.
+* You'll be prompt to allow for 2 permission scopes (to make API requests and customize the menu).
 
 
 ## Resources
