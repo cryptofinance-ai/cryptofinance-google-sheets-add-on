@@ -3,8 +3,6 @@
 The easiest way to get cryptocurrencies prices and more in your Google Sheets.
 
 More info at https://cryptofinance.ai
- 
-
 
 ## How to Install
 
@@ -21,9 +19,9 @@ More info at https://cryptofinance.ai
 
 ## Post-install
 
-* To avoid duplicate it's recommended to uninstall the the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
-* You'll need to paste the script for all the sheets where you want to use `CRYPTOFINANCE()`.
-* You'll be prompt to allow for 2 permission scopes (to make API requests and customize the menu).
+* To avoid duplicate it's recommended to uninstall the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
+* You'll need to paste the script in each sheet where you want to use `CRYPTOFINANCE()`.
+* You'll be prompted to allow for 2 permission scopes (to make API requests and customize the menu).
 
 
 ## Resources
