@@ -13,7 +13,9 @@ More info at https://cryptofinance.ai
 5. Back to your Google sheet, refresh the page, a **CRYPTOFINANCE** menu will appear next to **Help**
 6. That's it! You now have the `CRYPTOFINANCE()` function available in your sheet.
 
-**Note:** Don't forget to re-enter your API key if you subscribed to a plan
+**Post-Install Steps:**
+1. Don't forget to re-enter your API key if you subscribed to a plan
+2. Uninstall the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
 
 ![CRYPTOFINANCE Installed](https://cldup.com/mnrJS0of-u.png)
 
