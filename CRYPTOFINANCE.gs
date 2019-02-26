@@ -33,7 +33,7 @@ function ShowAPIKeyDataAvaibilityPrompt() {
 
   if (api_key) {
     var result = ui.prompt('Set API Key for Data Availability Service',
-                           '✅ Your API '+ api_key +' key is already set and is valid.\n\nYour CRYPTOFINANCE calls are sent to the Data Availability Proxy API.\nYou can still re-enter it below to override its current value:',
+                           '✅ Your API '+ api_key +' key is already set.\n\nYour CRYPTOFINANCE calls are sent to the Data Availability Proxy API.\nYou can still re-enter it below to override its current value:',
                            ui.ButtonSet.OK_CANCEL);
   }
   else {
