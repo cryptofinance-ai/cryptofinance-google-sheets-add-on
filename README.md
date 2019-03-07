@@ -6,6 +6,8 @@ More info at https://cryptofinance.ai
 
 ## How to Install
 
+**⚠️Important:** Before to start, uninstall the webstore version to avoid duplicate. You can do this via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
+
 1. Open a Google sheet where you wish to use `CRYPTOFINANCE()`
 2. Go to **Tools** &rsaquo; **Script editor**
 3. Copy the content of [`CRYPTOFINANCE.gs`](https://raw.githubusercontent.com/cryptofinance-ai/cryptofinance-google-sheets-add-on/master/CRYPTOFINANCE.gs) and paste it in the script editor (replace any existing content)
@@ -15,7 +17,7 @@ More info at https://cryptofinance.ai
 
 **Post-Install Steps:**
 1. Don't forget to re-enter your API key if you subscribed to a plan
-2. Uninstall the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
+2. If you haven't yet, uninstall the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
 
 ![CRYPTOFINANCE Installed](https://cldup.com/mnrJS0of-u.png)
 
