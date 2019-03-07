@@ -135,6 +135,24 @@ function ShowRefreshInfo() {
 }
 
 
+function cast_matrix__(el) {
+  if (!el || el == "") {
+    return "-"
+  }
+  if (el.map) {return el.map(cast_matrix__)}
+  try {
+    var out = Number(el)
+    if (out && out != NaN) {
+      return out
+    }
+    else {
+      return el
+    }
+  }
+  catch (e) {return el}
+}
+
+
 /**
  * Returns cryptocurrencies price and other info.
  *
@@ -200,6 +218,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
     }
     else if (data["type"] == "csv") {
       out = Utilities.parseCsv(data["value"]);
+      out = cast_matrix__(out);
     }
     else {
       out = data["value"]
