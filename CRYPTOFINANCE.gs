@@ -195,7 +195,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
       url += "&m=" + market;
       url += "&a=" + attribute;
       url += "&o=" + option;
-      url += "&s=webstore"
+      url += "&s=os"
       // Send request
       var response = UrlFetchApp.fetch(url, {muteHttpExceptions: true, validateHttpsCertificates: true})
       data = JSON.parse(response.getContentText());
