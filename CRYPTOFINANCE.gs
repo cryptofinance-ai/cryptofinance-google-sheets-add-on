@@ -164,7 +164,7 @@ function cast_matrix__(el) {
  * @customfunction
  */
 function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
-  
+
   // Sanitize input
   var market = (market+"") || "";
   var attribute = (attribute+"") || "";
@@ -195,6 +195,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
       url += "&m=" + market;
       url += "&a=" + attribute;
       url += "&o=" + option;
+      url += "&s=webstore"
       // Send request
       var response = UrlFetchApp.fetch(url, {muteHttpExceptions: true, validateHttpsCertificates: true})
       data = JSON.parse(response.getContentText());
@@ -228,7 +229,8 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
   }
 
   catch (e) {
-    throw new Error(e.message)
+    var msg = e.message.replace(/http.*$/gi,'')
+    throw new Error(msg)
   }
   
 }
