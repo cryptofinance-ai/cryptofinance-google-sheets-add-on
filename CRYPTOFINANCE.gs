@@ -229,7 +229,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
   }
 
   catch (e) {
-    var msg = e.message.replace(/http.*$/gi,'')
+    var msg = e.message.replace(/https:\/\/api.*$/gi,'')
     throw new Error(msg)
   }
   
