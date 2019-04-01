@@ -136,20 +136,20 @@ function ShowRefreshInfo() {
 
 
 function cast_matrix__(el) {
-  if (!el || el == "") {
+  if (el === "") {
     return "-"
   }
-  if (el.map) {return el.map(cast_matrix__)}
+  if (el.map) {return el.map(cast_matrix__);}
   try {
     var out = Number(el)
-    if (out && out != NaN) {
+    if ((out === 0 || out) && !isNaN(out)) {
       return out
     }
     else {
       return el
     }
   }
-  catch (e) {return el}
+  catch (e) {return el;}
 }
 
 
