@@ -139,11 +139,16 @@ function cast_matrix__(el) {
   if (el === "") {
     return "-"
   }
-  if (el.map) {return el.map(cast_matrix__);}
+  else if (el.map) {return el.map(cast_matrix__);}
   try {
     var out = Number(el)
     if ((out === 0 || out) && !isNaN(out)) {
-      return out
+      if (el.length > 1 && el[1] == 'x') {
+        return el
+      }
+      else {
+        return out
+      }
     }
     else {
       return el
