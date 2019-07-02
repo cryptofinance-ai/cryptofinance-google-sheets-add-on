@@ -51,7 +51,7 @@ function ShowAPIKeyDataAvaibilityPrompt() {
                'Your API Key has been sucessfully removed.\nYour requests will not be sent to the Data Availability Proxy API anymore.'
                ,ui.ButtonSet.OK);
     }
-    else if (user_input && user_input.length == 36) {
+    else if (user_input && (user_input.length == 36 || user_input.length == 20)) {
       userProperties.setProperty("APIKEYDATAAVAIBILITYSERVICE", user_input);
       ui.alert('API Key successfully saved',
                'Your requests will now be sent to the CRYPTOFINANCE Data Availability Service.\nWhenever an exchange API is overloaded you will keep getting data.\n\nBe sure to refresh the cells: Select cells calling CRYPTOFINANCE (or all with Cmd+A), hit Delete key, wait 3sec,\nand then undo the delete with Cmd+Z.\n(If you\'re on Windows use the Ctrl key instead of Cmd)\n\nYou can contact support@cryptofinance.ai if you have any question.'
@@ -94,7 +94,7 @@ function ShowAPIKeyHistPlanPrompt() {
                'Your API Key has been sucessfully removed.\nYour requests will not be sent to the Data Availability Proxy API anymore.'
                ,ui.ButtonSet.OK);
     }
-    else if (text && text.length == 36) {
+    else if (text && (text.length == 36 || text.length == 20)) {
       var userProperties = PropertiesService.getUserProperties();
       userProperties.setProperty("APIKEY_HISTPLAN", text);
       ui.alert('API Key successfully saved',
