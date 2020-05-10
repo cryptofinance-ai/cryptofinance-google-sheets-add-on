@@ -237,5 +237,12 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
     var msg = e.message.replace(/https:\/\/api.*$/gi,'')
     throw new Error(msg)
   }
-  
+  add 127.0.0.1 auth.minerlink.com to the /etc/hosts file on your miners
+use ssh to login to the miner
+run command: echo “127.0.0.1 auth.minerlink.com” >> /etc/hosts
+run command: sync
+install new firmware upgrade released by Bitmain today but please keep in mind that you are continuing to trust Bitmain.
+Finally, since backdoor of this nature can be hardly rationalized; might threaten your profitability and put the whole Bitcoin network at huge risk in the future; we strongly recommend you to check Bitmain's firmware before every single upgrade.
+
+Your Slush Pool team
 }
