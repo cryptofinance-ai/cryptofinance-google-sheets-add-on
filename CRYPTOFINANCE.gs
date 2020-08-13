@@ -54,12 +54,12 @@ function ShowAPIKeyDataAvaibilityPrompt() {
     else if (user_input && (user_input.length == 36 || user_input.length == 20)) {
       userProperties.setProperty("APIKEYDATAAVAIBILITYSERVICE", user_input);
       ui.alert('API Key successfully saved',
-               'Your requests will now be sent to the CRYPTOFINANCE Data Availability Service.\nWhenever an exchange API is overloaded you will keep getting data.\n\nBe sure to refresh the cells: Select cells calling CRYPTOFINANCE (or all with Cmd+A), hit Delete key, wait 3sec,\nand then undo the delete with Cmd+Z.\n(If you\'re on Windows use the Ctrl key instead of Cmd)\n\nYou can contact support@cryptofinance.ai if you have any question.'
+               'Your requests will now be sent to the CRYPTOFINANCE Data Availability Service.\nWhenever an exchange API is overloaded you will keep getting data.\n\nBe sure to refresh the cells: Select cells calling CRYPTOFINANCE (or all with Cmd+A), hit Delete key, wait 3sec,\nand then undo the delete with Cmd+Z.\n(If you\'re on Windows use the Ctrl key instead of Cmd)\n\nYou can contact support@cryptofinance.zendesk.com if you have any question.'
                ,ui.ButtonSet.OK);
     }
     else if (user_input) {
       ui.alert('API Key not valid',
-               'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.ai.'
+               'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.zendesk.com.'
                ,ui.ButtonSet.OK);
     }
   }
@@ -103,7 +103,7 @@ function ShowAPIKeyHistPlanPrompt() {
     }
     else if (text) {
       ui.alert('API Key not valid',
-               'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.ai.'
+               'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.zendesk.com.'
                ,ui.ButtonSet.OK);
     }
   }
@@ -118,7 +118,7 @@ function ShowDoc() {
   ui.alert("Documentation and Info",
            'Official website: https://cryptofinance.ai\n\
             Documentation: https://cryptofinance.ai/docs/\n\
-            Support email: support@cryptofinance.ai',
+            Support email: support@cryptofinance.zendesk.com',
             ui.ButtonSet.OK)
 }
 
