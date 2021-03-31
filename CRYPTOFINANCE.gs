@@ -14,9 +14,7 @@ function onOpen() {
   ui.createMenu('CRYPTOFINANCE')
       .addItem('How to refresh rates', 'ShowRefreshInfo')
       .addSeparator()
-      .addItem('Set Data Availability plan API Key', 'ShowAPIKeyDataAvaibilityPrompt')
-      .addSeparator()
-      .addItem('Set Historical Data plan API Key', 'ShowAPIKeyHistPlanPrompt')
+      .addItem('Enter Cryptowatch Public API Key', 'ShowAPIKeyCW')
       .addSeparator()
       .addItem('Documentation', 'ShowDoc')
       .addToUi();  
@@ -26,19 +24,19 @@ function onOpen() {
 /**
  * @OnlyCurrentDoc
  */
-function ShowAPIKeyDataAvaibilityPrompt() {
+function ShowAPIKeyCW() {
   var ui = SpreadsheetApp.getUi();
   var userProperties = PropertiesService.getUserProperties();
-  var api_key = userProperties.getProperty("APIKEYDATAAVAIBILITYSERVICE")
+  var api_key = userProperties.getProperty("CWPUBLICAPIKEY")
 
   if (api_key) {
-    var result = ui.prompt('Set API Key for Data Availability Service',
-                           '✅ Your API '+ api_key +' key is already set.\n\nYour CRYPTOFINANCE calls are sent to the Data Availability Proxy API.\nYou can still re-enter it below to override its current value:',
+    var result = ui.prompt('Enter Cryptowatch Public API Key',
+                           '✅ Your API '+ api_key +' key is already set.\n\nYou can still re-enter it below to override its current value:',
                            ui.ButtonSet.OK_CANCEL);
   }
   else {
-    var result = ui.prompt('Set API Key for Data Availability Service',
-                           'The Data Availability Service offers unlimited data from CoinMarketCap and helps you avoid errors due to exchanges API ban and overload.\nExchanges ban Google Sheets servers IP addresses when too many requests originate from them.\nIt also provides you with more exchanges and markets data.\n\nMore info here: https://cryptofinance.ai/data-availability-service\n\nOnce subscribed, please enter your API Key below:',
+    var result = ui.prompt('Enter Cryptowatch Public API Key',
+                           'You can subscribe to different sets of data attributes from your Cryptowatch account page.\n\nOnce subscribed, please enter your Public API Key below:',
                            ui.ButtonSet.OK_CANCEL);  
   }
   
@@ -46,62 +44,18 @@ function ShowAPIKeyDataAvaibilityPrompt() {
   var user_input = result.getResponseText().replace(/\s+/g, '');
   if (button == ui.Button.OK) {
     if (user_input && user_input == "__DELETE__") {
-      userProperties.deleteProperty("APIKEYDATAAVAIBILITYSERVICE");
+      userProperties.deleteProperty("CWPUBLICAPIKEY");
       ui.alert('API Key Removed',
-               'Your API Key has been sucessfully removed.\nYour requests will not be sent to the Data Availability Proxy API anymore.'
+               'Your API Key has been sucessfully removed.'
                ,ui.ButtonSet.OK);
     }
-    else if (user_input && (user_input.length == 36 || user_input.length == 20)) {
-      userProperties.setProperty("APIKEYDATAAVAIBILITYSERVICE", user_input);
+    else if (user_input && (user_input.length == 20 || user_input.length == 36) {
+      userProperties.setProperty("CWPUBLICAPIKEY", user_input);
       ui.alert('API Key successfully saved',
-               'Your requests will now be sent to the CRYPTOFINANCE Data Availability Service.\nWhenever an exchange API is overloaded you will keep getting data.\n\nBe sure to refresh the cells: Select cells calling CRYPTOFINANCE (or all with Cmd+A), hit Delete key, wait 3sec,\nand then undo the delete with Cmd+Z.\n(If you\'re on Windows use the Ctrl key instead of Cmd)\n\nYou can contact support@cryptofinance.zendesk.com if you have any question.'
+               'If you haven\t yet, you can subscribe to different sets of data attributes from your Cryptowatch account page.\n\nContact support@cryptofinance.zendesk.com if you have any question.'
                ,ui.ButtonSet.OK);
     }
     else if (user_input) {
-      ui.alert('API Key not valid',
-               'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.zendesk.com.'
-               ,ui.ButtonSet.OK);
-    }
-  }
-}
-
-
-/**
- * @OnlyCurrentDoc
- */
-function ShowAPIKeyHistPlanPrompt() {
-  var ui = SpreadsheetApp.getUi();
-  
-  var userProperties = PropertiesService.getUserProperties();
-  var api_key = userProperties.getProperty("APIKEY_HISTPLAN")
-  if (api_key) {
-    var result = ui.prompt('Set API Key for the Historical Data plan',
-                           '✅ Your API '+ api_key +' key is already set.\n\nYou can now use the historical data syntaxes in your sheet.\n\nYou can still re-enter it below to override its current value:',
-                           ui.ButtonSet.OK_CANCEL);
-  }
-  else {
-    var result = ui.prompt('Set API Key for the Historical Data plan',
-                        'The Historical Data plan gives you access to hourly historical data of 196 exchanges.\nIncluding hourly open, high, low, close and volume info.\nATH (All Time High) prices and volume per exchange and custom sparklines.\n\nMore info at https://cryptofinance.ai/crypto-historical-data\n\nOnce subscribed, please enter your API Key below:',
-                        ui.ButtonSet.OK_CANCEL);
-  }
-  var button = result.getSelectedButton();
-  var text = result.getResponseText().replace(/\s+/g, '');  
-  if (button == ui.Button.OK) {
-    if (text && text == "__DELETE__") {
-      var userProperties = PropertiesService.getUserProperties();
-      userProperties.deleteProperty("APIKEY_HISTPLAN");
-      ui.alert('API Key Removed',
-               'Your API Key has been sucessfully removed.\nYour requests will not be sent to the Data Availability Proxy API anymore.'
-               ,ui.ButtonSet.OK);
-    }
-    else if (text && (text.length == 36 || text.length == 20)) {
-      var userProperties = PropertiesService.getUserProperties();
-      userProperties.setProperty("APIKEY_HISTPLAN", text);
-      ui.alert('API Key successfully saved',
-               'You can now use the historical data syntaxes in your sheet.\n\nIt looks like this: =CRYPTOFINANCE("BTC/USD", "price", "2017-12-25@17:00")\n\nSee the doc for all options: https://cryptofinance.ai/docs/cryptocurrency-bitcoin-historical-prices/\n'
-               ,ui.ButtonSet.OK);
-    }
-    else if (text) {
       ui.alert('API Key not valid',
                'The API Key you entered appears to be not valid.\nIf you believe this is an error, contact support@cryptofinance.zendesk.com.'
                ,ui.ButtonSet.OK);
@@ -118,6 +72,7 @@ function ShowDoc() {
   ui.alert("Documentation and Info",
            'Official website: https://cryptofinance.ai\n\
             Documentation: https://cryptofinance.ai/docs/\n\
+            Guide: https://guides.cryptowat.ch/google-sheets-plugin#how-do-i-get-started\n\
             Support email: support@cryptofinance.zendesk.com',
             ui.ButtonSet.OK)
 }
@@ -161,11 +116,11 @@ function cast_matrix__(el) {
 /**
  * Returns cryptocurrencies price and other info.
  *
- * @param {"EXCHANGE:BASE/QUOTE"} market The market data to fetch, default is BTC/USD. Default EXCHANGE is CoinMarketCap. When no QUOTE currency is set, default is USD.
- * @param {"price|marketcap|volume|change|name|rank|max_supply|total_supply|circulating_supply"} attribute What to return, default is price. Some exchanges provide more info than others. Refer to the documentation for the full list. 
+ * @param {"EXCHANGE:BASE/QUOTE"} market The exchange or asset data to fetch, default is BTC/USD. Default data source is Cryptowatch, default quote currency is USD.
+ * @param {"price|volume|change|name|rank"} attribute What to return, default is price. Some exchanges provide more info than others. Refer to the documentation for the full list. 
  * @param {"Any supported period or date or empty string"} option Used to narrow down the attribute value by date or period. Use an empty string "" if you want to use a cell to force the refresh. Different attributes have different options. Refer to the doc for the supported syntaxes.
  * @param {"Empty cell reference"} refresh_cell ONLY on 4th argument. Reference an empty cell and change its content to force refresh the rates. See the doc for more info.
- * @return The current or historical price, volume, change, marketcap, name, rank, and more.
+ * @return The latest or historical price, volume, change, marketcap, name, rank, and more.
  * @customfunction
  */
 function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
@@ -180,7 +135,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
   var GSUUID = encodeURIComponent(Session.getTemporaryActiveUserKey());
   // Get Data Availability Service and Historical Plan API Keys, if any
   var userProperties = PropertiesService.getUserProperties();
-  var APIKEYDATAAVAIBILITYSERVICE = userProperties.getProperty("APIKEYDATAAVAIBILITYSERVICE") || "";
+  var APIKEYDATAAVAIBILITYSERVICE = userProperties.getProperty("CWPUBLICAPIKEY") || "";
   var APIKEY_HISTPLAN = userProperties.getProperty("APIKEY_HISTPLAN") || "";
   
   // Fetch data
