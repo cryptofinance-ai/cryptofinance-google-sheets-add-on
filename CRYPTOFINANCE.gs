@@ -49,7 +49,7 @@ function ShowAPIKeyCW() {
                'Your API Key has been sucessfully removed.'
                ,ui.ButtonSet.OK);
     }
-    else if (user_input && (user_input.length == 20 || user_input.length == 36) {
+    else if (user_input && (user_input.length == 20 || user_input.length == 36)) {
       userProperties.setProperty("CWPUBLICAPIKEY", user_input);
       ui.alert('API Key successfully saved',
                'If you haven\t yet, you can subscribe to different sets of data attributes from your Cryptowatch account page.\n\nContact support@cryptofinance.zendesk.com if you have any question.'
