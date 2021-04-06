@@ -151,7 +151,7 @@ function CRYPTOFINANCE(market, attribute, option, refresh_cell) {
     }
     // Else, fetch it from API and cache it
     else {
-      var url = "https://api.cryptofinance.ai/v1/data?histplanapikey=" + APIKEY_HISTPLAN + "&gsuuid=" + GSUUID + "&dataproxyapikey=" + APIKEYDATAAVAIBILITYSERVICE;
+      var url = "https://api.cryptofinance.ai/v1/data?histplanapikey=&gsuuid=" + GSUUID + "&dataproxyapikey=" + APIKEYDATAAVAIBILITYSERVICE;
       url += "&m=" + market;
       url += "&a=" + attribute;
       url += "&o=" + option;
