@@ -19,7 +19,8 @@ More info at https://cryptofinance.ai
 1. Don't forget to re-enter your API key if you subscribed to a plan
 2. If you haven't yet, uninstall the webstore version via **Add-ons** &rsaquo; **Manage Add-ons** and selecting **Remove** from the drop-down menu.
 
-![CRYPTOFINANCE Installed](https://cldup.com/mnrJS0of-u.png)
+![CRYPTOFINANCE Installed](https://user-images.githubusercontent.com/46814692/116346694-52b45500-a81d-11eb-94ac-7f9193c32148.png)
+
 
 ## Post-install
 
